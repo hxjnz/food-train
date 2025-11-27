@@ -1,65 +1,142 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { RestaurantList } from '@/components/restaurant/RestaurantList';
+import { FilterBar } from '@/components/filters/FilterBar';
+import { RandomPicker } from '@/components/random-picker/RandomPicker';
+import { UserNav } from '@/components/auth/UserNav';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { useLanguage } from '@/components/LanguageContext';
+import { useAuth } from '@/components/auth/AuthProvider';
+import { translations } from '@/lib/i18n';
+import { Plus, LogIn } from 'lucide-react';
+
+export default function HomePage() {
+  const [filters, setFilters] = useState({});
+  const [showRandomPicker, setShowRandomPicker] = useState(false);
+  const { locale } = useLanguage();
+  const { user } = useAuth();
+  const t = translations[locale];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-gray-50 pb-20">
+      {/* Mobile-First Header */}
+      <header className="bg-white border-b sticky top-0 z-10 shadow-sm">
+        <div className="px-4 py-3">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex-1">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">{t.appTitle}</h1>
+              <p className="text-xs sm:text-sm text-gray-600">{t.appSubtitle}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <LanguageSwitcher />
+              <UserNav />
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* Guest Banner - Mobile Optimized */}
+      {!user && (
+        <div className="bg-blue-50 border-b border-blue-200">
+          <div className="px-4 py-3">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <div className="flex flex-col gap-1">
+                <span className="text-blue-800 font-medium text-sm">👋 {t.guestBanner}</span>
+                <span className="text-blue-600 text-xs">{t.guestMessage}</span>
+              </div>
+              <div className="flex gap-2">
+                <Link href="/login" className="flex-1 sm:flex-none">
+                  <Button variant="outline" size="sm" className="w-full">
+                    {t.login}
+                  </Button>
+                </Link>
+                <Link href="/signup" className="flex-1 sm:flex-none">
+                  <Button size="sm" className="w-full">{t.signup}</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Content - Mobile First */}
+      <main className="px-4 py-4 sm:py-6 max-w-7xl mx-auto">
+        <div className="space-y-4">
+          {/* Filters - Mobile Optimized */}
+          <FilterBar onFilterChange={setFilters} />
+
+          {/* Restaurant List */}
+          <RestaurantList filters={filters} />
         </div>
       </main>
+
+      {/* Bottom Navigation - Mobile */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg z-20 sm:hidden">
+        <div className="grid grid-cols-2 gap-2 p-3">
+          <Button
+            onClick={() => setShowRandomPicker(true)}
+            variant="outline"
+            size="lg"
+            className="h-14 text-base"
+          >
+            🎲 {locale === 'zh' ? '随机选择' : 'Random'}
+          </Button>
+          {user ? (
+            <Link href="/restaurants/new" className="flex-1">
+              <Button size="lg" className="w-full h-14 text-base">
+                <Plus className="h-5 w-5 mr-2" />
+                {locale === 'zh' ? '添加' : 'Add'}
+              </Button>
+            </Link>
+          ) : (
+            <Link href="/login" className="flex-1">
+              <Button size="lg" className="w-full h-14 text-base">
+                <LogIn className="h-5 w-5 mr-2" />
+                {locale === 'zh' ? '登录' : 'Login'}
+              </Button>
+            </Link>
+          )}
+        </div>
+      </div>
+
+      {/* Desktop Action Buttons */}
+      <div className="hidden sm:block fixed bottom-8 right-8 z-20">
+        <div className="flex flex-col gap-3">
+          <Button
+            onClick={() => setShowRandomPicker(true)}
+            size="lg"
+            className="shadow-lg"
+          >
+            🎲 {t.randomPick}
+          </Button>
+          {user ? (
+            <Link href="/restaurants/new">
+              <Button size="lg" className="w-full shadow-lg">
+                <Plus className="h-5 w-5 mr-2" />
+                {t.addRestaurant}
+              </Button>
+            </Link>
+          ) : (
+            <Link href="/login">
+              <Button size="lg" className="w-full shadow-lg">
+                <LogIn className="h-5 w-5 mr-2" />
+                {t.loginToAdd}
+              </Button>
+            </Link>
+          )}
+        </div>
+      </div>
+
+      {/* Random Picker Modal */}
+      {showRandomPicker && (
+        <RandomPicker
+          filters={filters}
+          onClose={() => setShowRandomPicker(false)}
+        />
+      )}
     </div>
   );
 }
