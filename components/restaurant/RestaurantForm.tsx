@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { Restaurant } from '@/lib/types';
+import { LocationPicker } from '@/components/map/LocationPicker';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload } from 'lucide-react';
+import { Upload, MapPin } from 'lucide-react';
 
 interface RestaurantFormProps {
   restaurant?: Restaurant;
@@ -24,6 +25,11 @@ export function RestaurantForm({ restaurant, mode }: RestaurantFormProps) {
   const [distance, setDistance] = useState(restaurant?.distance || '');
   const [address, setAddress] = useState(restaurant?.address || '');
   const [notes, setNotes] = useState(restaurant?.notes || '');
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
+    restaurant?.latitude && restaurant?.longitude 
+      ? { lat: restaurant.latitude, lng: restaurant.longitude }
+      : null
+  );
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(restaurant?.image_url || null);
   const [loading, setLoading] = useState(false);
@@ -93,6 +99,8 @@ export function RestaurantForm({ restaurant, mode }: RestaurantFormProps) {
         address,
         notes,
         image_url: imageUrl,
+        latitude: location?.lat || null,
+        longitude: location?.lng || null,
         created_by: user.id,
       };
 
@@ -230,6 +238,22 @@ export function RestaurantForm({ restaurant, mode }: RestaurantFormProps) {
                 </div>
               )}
             </div>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <MapPin className="h-4 w-4" />
+              <Label>餐厅位置（点击地图选择）</Label>
+            </div>
+            <LocationPicker value={location} onChange={setLocation} />
+            {location && (
+              <p className="text-xs text-gray-600">
+                选中坐标: {location.lat.toFixed(6)}, {location.lng.toFixed(6)}
+              </p>
+            )}
+            <p className="text-xs text-gray-500">
+              提示：点击地图上的位置来标记餐厅。如果不选择，餐厅将不会显示在地图视图中。
+            </p>
           </div>
 
           <div className="flex gap-4 pt-4">

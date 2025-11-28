@@ -1,4 +1,4 @@
-// Auckland CBD Restaurant Seed Data
+// Auckland CBD Restaurant Seed Data with Coordinates
 // Based on Queen St, Lorne St, High St, and Shortland St
 
 export interface RestaurantSeedData {
@@ -12,7 +12,8 @@ export interface RestaurantSeedData {
   longitude?: number;
 }
 
-export const aucklandRestaurants: RestaurantSeedData[] = [
+// Auckland CBD center coordinates: approximately -36.848, 174.763
+export const aucklandRestaurantsWithCoords: RestaurantSeedData[] = [
   // Queen Street Restaurants
   {
     name: 'Burger Burger',
@@ -73,6 +74,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '3 min walk',
     address: '66-68 Tyler Street (near Lorne St), Auckland CBD',
     notes: 'Upscale Italian restaurant and bakery. Beautiful interior, excellent pasta and pizza.',
+    latitude: -36.8468,
+    longitude: 174.7605,
   },
   {
     name: 'Cafe Hanoi',
@@ -81,6 +84,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '4 min walk',
     address: '2 Galway Street (near Lorne St), Auckland CBD',
     notes: 'Popular Vietnamese restaurant, pho and banh mi. Often busy, recommend booking.',
+    latitude: -36.8472,
+    longitude: 174.7598,
   },
   {
     name: 'Scarecrow',
@@ -89,6 +94,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '5 min walk',
     address: '1 Lorne Street, Auckland CBD',
     notes: 'Modern Korean fusion, bibimbap and fried chicken. Trendy atmosphere.',
+    latitude: -36.8475,
+    longitude: 174.7600,
   },
   {
     name: 'Giraffe',
@@ -97,6 +104,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '3 min walk',
     address: 'Lorne Street, Auckland CBD',
     notes: 'All-day dining, brunch and lunch options. Known for their eggs benedict and coffee.',
+    latitude: -36.8470,
+    longitude: 174.7602,
   },
   
   // High Street Restaurants
@@ -107,6 +116,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '6 min walk',
     address: '90 Federal Street (near High St), Auckland CBD',
     notes: 'High-end Japanese robata grill. Fresh sushi and premium ingredients.',
+    latitude: -36.8480,
+    longitude: 174.7620,
   },
   {
     name: 'Depot Eatery',
@@ -115,6 +126,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '5 min walk',
     address: '86 Federal Street (near High St), Auckland CBD',
     notes: 'Al Brown\'s casual eatery, oysters and seafood. Great for sharing plates.',
+    latitude: -36.8478,
+    longitude: 174.7618,
   },
   {
     name: 'Chuffed Coffee + Food',
@@ -123,6 +136,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '4 min walk',
     address: 'High Street, Auckland CBD',
     notes: 'Trendy cafe, excellent coffee and cabinet food. Perfect for quick lunch.',
+    latitude: -36.8472,
+    longitude: 174.7668,
   },
   {
     name: 'Xuxu Dumpling Bar',
@@ -131,6 +146,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '5 min walk',
     address: 'Level 1, 2 High Street, Auckland CBD',
     notes: 'Authentic dumplings and noodles. Affordable and filling, great value.',
+    latitude: -36.8470,
+    longitude: 174.7670,
   },
   {
     name: 'Ebisu',
@@ -139,6 +156,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '6 min walk',
     address: '116-118 Quay Street (near High St), Auckland CBD',
     notes: 'Traditional Japanese restaurant, sushi and bento boxes. Fresh fish daily.',
+    latitude: -36.8430,
+    longitude: 174.7695,
   },
   
   // Shortland Street Restaurants
@@ -149,6 +168,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '2 min walk',
     address: 'Shortland Street, Auckland CBD',
     notes: 'Popular office workers cafe, sandwiches and salads. Quick service.',
+    latitude: -36.8458,
+    longitude: 174.7640,
   },
   {
     name: 'Ima',
@@ -157,6 +178,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '3 min walk',
     address: 'Fort Street (between Queen and Shortland), Auckland CBD',
     notes: 'Israeli-inspired cuisine, shakshuka and pita. Fresh ingredients.',
+    latitude: -36.8465,
+    longitude: 174.7650,
   },
   {
     name: 'Poke Bar',
@@ -165,6 +188,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '3 min walk',
     address: 'Shortland Street, Auckland CBD',
     notes: 'Build-your-own poke bowls, healthy and fresh. Quick lunch option.',
+    latitude: -36.8460,
+    longitude: 174.7642,
   },
   {
     name: 'Sal\'s Pizza',
@@ -173,6 +198,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '4 min walk',
     address: 'Queen Street (near Shortland), Auckland CBD',
     notes: 'New York-style pizza by the slice. Fast service, good value.',
+    latitude: -36.8468,
+    longitude: 174.7638,
   },
   {
     name: 'Farina',
@@ -181,6 +208,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '5 min walk',
     address: 'Lorne Street, Auckland CBD',
     notes: 'Contemporary Italian, handmade pasta. Great lunch specials.',
+    latitude: -36.8473,
+    longitude: 174.7601,
   },
   {
     name: 'Ortolana',
@@ -189,6 +218,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '7 min walk',
     address: '33 Tyler Street (Britomart, near CBD), Auckland CBD',
     notes: 'Farm-to-table dining, seasonal menu. Beautiful garden setting.',
+    latitude: -36.8445,
+    longitude: 174.7680,
   },
   
   // Additional Popular CBD Options
@@ -199,6 +230,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '3 min walk',
     address: 'Queen Street, Auckland CBD',
     notes: 'Chain restaurant, ramen and curry. Consistent quality, good portions.',
+    latitude: -36.8490,
+    longitude: 174.7632,
   },
   {
     name: 'Sushi Train',
@@ -207,6 +240,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '2 min walk',
     address: 'Queen Street, Auckland CBD',
     notes: 'Conveyor belt sushi, fun dining experience. Affordable and quick.',
+    latitude: -36.8492,
+    longitude: 174.7630,
   },
   {
     name: 'Mekong Baby',
@@ -215,6 +250,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '5 min walk',
     address: 'Lorne Street, Auckland CBD',
     notes: 'Modern Vietnamese street food, bánh mì and rice paper rolls. Vibrant atmosphere.',
+    latitude: -36.8477,
+    longitude: 174.7598,
   },
   {
     name: 'Mexico',
@@ -223,6 +260,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '6 min walk',
     address: 'Victoria Street West (near Queen St), Auckland CBD',
     notes: 'Authentic Mexican, tacos and quesadillas. Great margaritas.',
+    latitude: -36.8505,
+    longitude: 174.7610,
   },
   {
     name: 'Chop Chop',
@@ -231,6 +270,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '4 min walk',
     address: 'Queen Street, Auckland CBD',
     notes: 'Fast Asian food, noodles and rice dishes. Budget-friendly.',
+    latitude: -36.8495,
+    longitude: 174.7628,
   },
   {
     name: 'Gourmet Burger Kitchen',
@@ -239,6 +280,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '3 min walk',
     address: 'High Street, Auckland CBD',
     notes: 'Premium burgers, craft beers. Casual dining environment.',
+    latitude: -36.8474,
+    longitude: 174.7665,
   },
   {
     name: 'Pita Pit',
@@ -247,6 +290,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '2 min walk',
     address: 'Queen Street, Auckland CBD',
     notes: 'Quick pitas and wraps, healthy options. Build your own.',
+    latitude: -36.8488,
+    longitude: 174.7634,
   },
   {
     name: 'Elliott Stables Food Court',
@@ -255,6 +300,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '5 min walk',
     address: 'Elliott Street (near Queen St), Auckland CBD',
     notes: 'Multiple food vendors, Asian and Western options. Variety of choices.',
+    latitude: -36.8510,
+    longitude: 174.7625,
   },
   {
     name: 'Soul Bar',
@@ -263,6 +310,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '8 min walk',
     address: 'Viaduct Harbour (walkable from CBD), Auckland',
     notes: 'Premium seafood, harbour views. Special occasion dining.',
+    latitude: -36.8420,
+    longitude: 174.7708,
   },
   {
     name: 'Ima Korean',
@@ -271,6 +320,8 @@ export const aucklandRestaurants: RestaurantSeedData[] = [
     distance: '4 min walk',
     address: 'High Street, Auckland CBD',
     notes: 'Korean BBQ and hotpot, authentic flavors. Popular lunch sets.',
+    latitude: -36.8476,
+    longitude: 174.7667,
   },
 ];
 

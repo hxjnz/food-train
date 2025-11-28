@@ -8,6 +8,8 @@ export interface Restaurant {
   address: string;
   notes: string;
   image_url: string | null;
+  latitude: number | null;
+  longitude: number | null;
   created_by: string;
   created_at: string;
   updated_at: string;

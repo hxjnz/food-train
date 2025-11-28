@@ -4,6 +4,7 @@ import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { RestaurantList } from '@/components/restaurant/RestaurantList';
+import { RestaurantMap } from '@/components/map/RestaurantMap';
 import { FilterBar } from '@/components/filters/FilterBar';
 import { RandomPicker } from '@/components/random-picker/RandomPicker';
 import { UserNav } from '@/components/auth/UserNav';
@@ -12,12 +13,15 @@ import { useLanguage } from '@/components/LanguageContext';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { translations } from '@/lib/i18n';
 import { useShakeDetection } from '@/hooks/useShakeDetection';
-import { Plus, LogIn, Smartphone } from 'lucide-react';
+import { Plus, LogIn, Smartphone, List, Map } from 'lucide-react';
+
+type ViewMode = 'list' | 'map';
 
 export default function HomePage() {
   const [filters, setFilters] = useState({});
   const [showRandomPicker, setShowRandomPicker] = useState(false);
   const [shakeHint, setShakeHint] = useState(true);
+  const [viewMode, setViewMode] = useState<ViewMode>('list');
   const { locale } = useLanguage();
   const { user } = useAuth();
   const t = translations[locale];
@@ -100,8 +104,34 @@ export default function HomePage() {
           {/* Filters - Mobile Optimized */}
           <FilterBar onFilterChange={setFilters} />
 
-          {/* Restaurant List */}
-          <RestaurantList filters={filters} />
+          {/* View Switcher */}
+          <div className="flex gap-2 bg-white rounded-lg p-1 border w-fit">
+            <Button
+              variant={viewMode === 'list' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('list')}
+              className="gap-2"
+            >
+              <List className="h-4 w-4" />
+              {locale === 'zh' ? '列表' : 'List'}
+            </Button>
+            <Button
+              variant={viewMode === 'map' ? 'default' : 'ghost'}
+              size="sm"
+              onClick={() => setViewMode('map')}
+              className="gap-2"
+            >
+              <Map className="h-4 w-4" />
+              {locale === 'zh' ? '地图' : 'Map'}
+            </Button>
+          </div>
+
+          {/* Content based on view mode */}
+          {viewMode === 'list' ? (
+            <RestaurantList filters={filters} />
+          ) : (
+            <RestaurantMap filters={filters} />
+          )}
         </div>
       </main>
 
