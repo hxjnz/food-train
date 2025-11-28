@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { RestaurantList } from '@/components/restaurant/RestaurantList';
@@ -11,14 +11,28 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/components/LanguageContext';
 import { useAuth } from '@/components/auth/AuthProvider';
 import { translations } from '@/lib/i18n';
-import { Plus, LogIn } from 'lucide-react';
+import { useShakeDetection } from '@/hooks/useShakeDetection';
+import { Plus, LogIn, Smartphone } from 'lucide-react';
 
 export default function HomePage() {
   const [filters, setFilters] = useState({});
   const [showRandomPicker, setShowRandomPicker] = useState(false);
+  const [shakeHint, setShakeHint] = useState(true);
   const { locale } = useLanguage();
   const { user } = useAuth();
   const t = translations[locale];
+
+  // 摇一摇检测
+  const handleShake = useCallback(() => {
+    setShowRandomPicker(true);
+    setShakeHint(false); // 第一次摇动后隐藏提示
+  }, []);
+
+  useShakeDetection({
+    threshold: 15,
+    timeout: 1000,
+    onShake: handleShake,
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
@@ -58,6 +72,24 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Shake Hint - Mobile Only */}
+      {shakeHint && (
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-30 sm:hidden">
+          <div className="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 animate-bounce">
+            <Smartphone className="h-4 w-4" />
+            <span className="text-sm font-medium">
+              {locale === 'zh' ? '摇一摇手机试试！' : 'Shake your phone!'}
+            </span>
+            <button 
+              onClick={() => setShakeHint(false)}
+              className="ml-2 hover:bg-blue-600 rounded-full p-1"
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}
