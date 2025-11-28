@@ -50,11 +50,22 @@ export default function LoginPage() {
         <LanguageSwitcher />
       </div>
       <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">{t.loginTitle}</CardTitle>
-          <CardDescription className="text-center">
-            {t.loginDescription}
-          </CardDescription>
+        <CardHeader className="space-y-4">
+          <div className="flex flex-col items-center gap-4">
+            <img 
+              src="/logo.svg" 
+              alt="PwC Logo" 
+              className="h-16 w-auto"
+            />
+            <div className="text-center space-y-2">
+              <h1 className="text-2xl font-bold text-gray-900">
+                PwC AI Factory Food Train
+              </h1>
+              <CardDescription>
+                {t.loginDescription}
+              </CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4">

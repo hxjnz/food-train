@@ -44,38 +44,64 @@
 }
 
 :root {
+  /* PwC Brand Colors */
+  --bu-orange: #fd5108;
+  --bu-black: #000;
+  --bu-white: #fff;
+  --bu-orange50: #fff5ed;
+  --bu-orange100: #ffe8d4;
+  --bu-orange700: #c52b09;
+  --bu-grey50: #f5f7f8;
+  --bu-grey200: #dfe3e6;
+  --bu-grey300: #cbd1d6;
+  --bu-grey700: #787e8a;
+  --bu-grey800: #4c5056;
+  --bu-grey900: #303236;
+  --bu-transparent: transparent;
+  --bu-form-asterisk: var(--bu-orange);
+  --bu-form-success: #059669;
+  --bu-form-error: #dc2626;
+
+  /* UI Settings */
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Theme Colors - Using PwC Brand */
+  --background: var(--bu-white);
+  --foreground: var(--bu-grey900);
+  --card: var(--bu-white);
+  --card-foreground: var(--bu-grey900);
+  --popover: var(--bu-white);
+  --popover-foreground: var(--bu-grey900);
+  --primary: var(--bu-orange);
+  --primary-foreground: var(--bu-white);
+  --secondary: var(--bu-grey50);
+  --secondary-foreground: var(--bu-grey900);
+  --muted: var(--bu-grey50);
+  --muted-foreground: var(--bu-grey700);
+  --accent: var(--bu-orange50);
+  --accent-foreground: var(--bu-orange700);
+  --destructive: var(--bu-form-error);
+  --destructive-foreground: var(--bu-white);
+  --border: var(--bu-grey200);
+  --input: var(--bu-grey200);
+  --ring: var(--bu-orange);
+  
+  /* Charts */
+  --chart-1: var(--bu-orange);
+  --chart-2: #0ea5e9;
+  --chart-3: #8b5cf6;
+  --chart-4: #f59e0b;
+  --chart-5: #10b981;
+  
+  /* Sidebar */
+  --sidebar: var(--bu-grey50);
+  --sidebar-foreground: var(--bu-grey900);
+  --sidebar-primary: var(--bu-orange);
+  --sidebar-primary-foreground: var(--bu-white);
+  --sidebar-accent: var(--bu-grey100);
+  --sidebar-accent-foreground: var(--bu-grey900);
+  --sidebar-border: var(--bu-grey200);
+  --sidebar-ring: var(--bu-orange);
 }
 
 .dark {
