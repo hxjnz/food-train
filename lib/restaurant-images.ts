@@ -50,7 +50,6 @@ export const restaurantImages: Record<string, string> = {
   
   // Asian Fusion
   'Wagamama': 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800&q=80', // Ramen bowl
-  'Chop Chop': 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800&q=80', // Asian fusion
   
   // Hawaiian
   'Poke Bar': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80', // Poke bowl
